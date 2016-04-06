@@ -101,6 +101,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             e.printStackTrace();
         }
 
+        String hexColor = String.format("#%06X", (0xFFFFFF & pixel));
+        Log.i(TAG, "Probably : " + hexColor);
+
+        ColorUtils colorUtils = new ColorUtils();
+        String colorName = colorUtils.getColorNameFromHex(pixel);
+        Log.i(TAG, "ColorName : " + colorName);
+
     }};
 
 

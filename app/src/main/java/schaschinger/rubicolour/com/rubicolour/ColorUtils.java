@@ -199,20 +199,6 @@ public class ColorUtils {
         return getColorNameFromRgb(r, g, b);
     }
 
-    /*
-    public int colorToHex(Color c) {
-
-        Integer.decode("0x" + Integer.toHexString(c.).substring(2));
-
-        return Integer.decode("0x"
-                + Integer.toHexString(c.getRGB()).substring(2));
-    }
-
-    public String getColorNameFromColor(Color color) {
-        return getColorNameFromRgb(color.getRed(), color.getGreen(),
-                color.getBlue());
-    }
-*/
     /**
      * SubClass of ColorUtils. In order to lookup color name
      *

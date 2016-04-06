@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
     private Camera mCamera;
     private CameraPreview mPreview;
     private Button btnPrune;
-    private ColorUtils colorUtils;
+
 
 
 
@@ -58,7 +58,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preview);
 
-        this.colorUtils = new ColorUtils();
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
