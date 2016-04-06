@@ -8,7 +8,7 @@
     <uses-permission android:name="android.hardware.camera.autofocus"/>
     <uses-permission android:name="android.hardware.camera.external"/>
     <uses-permission android:name="android.hardware.camera.capability.manual_post_processing"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
