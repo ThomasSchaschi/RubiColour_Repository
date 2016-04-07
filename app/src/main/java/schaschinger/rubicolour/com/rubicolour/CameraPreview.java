@@ -28,6 +28,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private SurfaceHolder mHolder;
     private Camera mCamera;
 
+
     private final String TAG = "CameraPreview - ";
 
 
@@ -74,10 +75,25 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
         takenBitmap = BitmapFactory.decodeByteArray(arg0, 0, arg0.length);
         Log.i(TAG, "Bitmap obtained!");
-        int pixel = takenBitmap.getPixel(takenBitmap.getWidth() / 2 , takenBitmap.getHeight() / 2);
-        Log.i(TAG, "+" + pixel);
 
 
+        int pixelCenter= takenBitmap.getPixel(takenBitmap.getWidth() / 2 + 8, takenBitmap.getHeight() / 2);
+        int pixelLeft = takenBitmap.getPixel(takenBitmap.getWidth() / 2 - 8, takenBitmap.getHeight() / 2);
+        int pixelRight = takenBitmap.getPixel(takenBitmap.getWidth() / 2 + 33, takenBitmap.getHeight() / 2);
+
+        int pixelTopCenter = takenBitmap.getPixel(takenBitmap.getWidth() / 2 + 8, takenBitmap.getHeight() / 2 - 25);
+        int pixelTopLeft = takenBitmap.getPixel(takenBitmap.getWidth() / 2 - 8, takenBitmap.getHeight() / 2 - 25);
+        int pixelTopRight = takenBitmap.getPixel(takenBitmap.getWidth() / 2 + 33, takenBitmap.getHeight() / 2 - 25);
+
+        int pixelBottomCenter = takenBitmap.getPixel(takenBitmap.getWidth() / 2 + 8, takenBitmap.getHeight() / 2 + 25);
+        int pixelBottomLeft = takenBitmap.getPixel(takenBitmap.getWidth() / 2 - 8, takenBitmap.getHeight() / 2 + 25);
+        int pixelBottomRight = takenBitmap.getPixel(takenBitmap.getWidth() / 2 + 33, takenBitmap.getHeight() / 2 + 25);
+
+        Log.i(TAG, "Obtained pixelCenter from coordinate : " + takenBitmap.getWidth() / 2 + " " + takenBitmap.getHeight() / 2);
+        Log.i(TAG, "+" + pixelCenter);
+
+
+        /*
         Date now = new Date();
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
 
@@ -100,14 +116,71 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
 
-        String hexColor = String.format("#%06X", (0xFFFFFF & pixel));
+        //Color center
+        String hexColor = String.format("#%06X", (0xFFFFFF & pixelCenter));
         Log.i(TAG, "Probably : " + hexColor);
-
         ColorUtils colorUtils = new ColorUtils();
-        String colorName = colorUtils.getColorNameFromHex(pixel);
-        Log.i(TAG, "ColorName : " + colorName);
+        String colorName = colorUtils.getColorNameFromHex(pixelCenter);
+        Log.i(TAG, "Center : " + colorName);
 
+        //Color left
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelLeft));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelLeft);
+        Log.i(TAG, "Left : " + colorName);
+
+        //Color right
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelRight));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelRight);
+        Log.i(TAG, "Right : " + colorName);
+
+        //Top center
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelTopCenter));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelTopCenter);
+        Log.i(TAG, "Top center : " + colorName);
+
+        //Top left
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelTopLeft));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelTopLeft);
+        Log.i(TAG, "Top left : " + colorName);
+
+        //Top right
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelTopRight));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelTopRight);
+        Log.i(TAG, "Top right : " + colorName);
+
+        //Bttom center
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomCenter));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelBottomCenter);
+        Log.i(TAG, "Bottom center : " + colorName);
+
+        //Bottom left
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomLeft));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelBottomLeft);
+        Log.i(TAG, "Bottom left : " + colorName);
+
+        //Bottom right
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomRight));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelBottomRight);
+        Log.i(TAG, "Bottom right : " + colorName);
+
+        mCamera.stopPreview();
+        //Restart camera to take another picture
+        try {
+            mCamera.setPreviewDisplay(mHolder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }};
 
 

@@ -69,17 +69,17 @@ public class MainActivity extends Activity {
         preview.addView(mPreview);
 
         final Box box = new Box(this);
-        addContentView(box, new ActionBar.LayoutParams(ActionBar.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+        addContentView(box, new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         //Check if camera is available
         if(checkCameraHardware(this)) {
-
 
             //For screenshot
             this.btnPrune = (Button) findViewById(R.id.button_capture);
             this.btnPrune.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     mPreview.takeScreenshot();
                 }
             });
