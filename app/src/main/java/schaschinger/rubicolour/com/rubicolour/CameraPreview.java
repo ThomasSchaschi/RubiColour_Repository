@@ -16,7 +16,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import static android.support.v4.app.ActivityCompat.startActivity;
 
@@ -173,6 +175,9 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         colorName = colorUtils.getColorNameFromHex(pixelBottomRight);
         Log.i(TAG, "Bottom right : " + colorName);
 
+
+        Log.i(TAG, "================================================================================");
+
         mCamera.stopPreview();
         //Restart camera to take another picture
         try {
@@ -183,8 +188,84 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }};
 
+    /*
+    HashMaps for cube-surfaces - Key=String, Value=String(Color)
+     Keys = [TopL, TopC, TopR, CenL, CenC, CenR, BotL, BotC, BotR}
+     */
+    private HashMap <String, String> hashWhite;
+    private HashMap <String, String> hashOrange;
+    private HashMap <String, String> hashYellow;
+    private HashMap <String, String> hashRed;
+    private HashMap <String, String> hashGreen;
+    private HashMap <String, String> hashBlue;
 
+    public ArrayList <HashMap<String, String>> allMaps;
 
+    private final String[] keyMap = new String[]{"TopL","TopC","TopR","CenL","CenC","CenR","BotL","BotC","BotR"};
+
+    private void initializeMap(String mapName, String [] vales){
+        switch (mapName){
+            case "hashWhite":
+                this.hashWhite = new HashMap<String, String>();
+                for(int i = 0; i < vales.length; i++){
+                    hashWhite.put(keyMap[i], vales[i]);
+                }
+
+                break;
+            case "hashOrange":
+                this.hashOrange = new HashMap<String, String>();
+                for(int i = 0; i < vales.length; i++){
+                    hashOrange.put(keyMap[i], vales[i]);
+                }
+
+                break;
+            case "hashYellow":
+                this.hashYellow = new HashMap<String, String>();
+                for(int i = 0; i < vales.length; i++){
+                    hashYellow.put(keyMap[i], vales[i]);
+                }
+
+                break;
+            case "hashRed":
+                this.hashRed = new HashMap<String, String>();
+                for(int i = 0; i < vales.length; i++){
+                    hashRed.put(keyMap[i], vales[i]);
+                }
+
+                break;
+            case "hashGreen":
+                this.hashGreen = new HashMap<String, String>();
+                for(int i = 0; i < vales.length; i++){
+                    hashGreen.put(keyMap[i], vales[i]);
+                }
+
+                break;
+            case "hashBlue":
+                this.hashBlue = new HashMap<String, String>();
+                for(int i = 0; i < vales.length; i++){
+                    hashBlue.put(keyMap[i], vales[i]);
+                }
+
+                break;
+            default:
+                Log.i(TAG, "Unknown hashMap! " + mapName);
+                break;
+        }
+
+        if(hashWhite != null && hashOrange != null && hashYellow != null && hashRed != null && hashGreen != null && hashBlue != null){
+            allMaps.add(this.hashWhite);
+            allMaps.add(this.hashOrange);
+            allMaps.add(this.hashYellow);
+            allMaps.add(this.hashRed);
+            allMaps.add(this.hashGreen);
+            allMaps.add(this.hashBlue);
+            Log.i(TAG, "All maps gathered!");
+        }
+    }
+
+    /*
+    End methods concerning cube maps initialization
+     */
 
     public void surfaceCreated(SurfaceHolder holder) {
         // The Surface has been created, now tell the camera where to draw the preview.
