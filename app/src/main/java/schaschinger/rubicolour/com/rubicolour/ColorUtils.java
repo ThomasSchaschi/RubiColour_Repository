@@ -216,7 +216,7 @@ public class ColorUtils {
         colorList.add(new ColorName("GreenYellow", 0xAD, 0xFF, 0x2F));
         colorList.add(new ColorName("HoneyDew", 0xF0, 0xFF, 0xF0));
         colorList.add(new ColorName("HotPink", 0xFF, 0x69, 0xB4));
-        colorList.add(new ColorName("Red", 0xCD, 0x5C, 0x5C));
+        colorList.add(new ColorName("Orange", 0xCD, 0x5C, 0x5C));
         colorList.add(new ColorName("Indigo", 0x4B, 0x00, 0x82));
         colorList.add(new ColorName("Ivory", 0xFF, 0xFF, 0xF0));
         colorList.add(new ColorName("Khaki", 0xF0, 0xE6, 0x8C));

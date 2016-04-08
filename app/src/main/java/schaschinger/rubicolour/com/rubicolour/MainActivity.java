@@ -74,13 +74,25 @@ public class MainActivity extends Activity {
         //Check if camera is available
         if(checkCameraHardware(this)) {
 
+            mPreview.initializeArraylists();
             //For screenshot
             this.btnPrune = (Button) findViewById(R.id.button_capture);
             this.btnPrune.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(mPreview.getCounter() == 7){
+                        Log.i(TAG, "=================================================================================");
+                        Log.i(TAG, "WhiteList entries: " + mPreview.getListWhite().size());
+                        Log.i(TAG, "OrangeList entries: " + mPreview.getListOrange().size());
+                        Log.i(TAG, "YellowList entries: " + mPreview.getListYellow().size());
+                        Log.i(TAG, "RedList entries: " + mPreview.getListRed().size());
+                        Log.i(TAG, "GreenList entries: " + mPreview.getListGreen().size());
+                        Log.i(TAG, "BlueList entries: " + mPreview.getListBlue().size());
+                        Log.i(TAG, "=================================================================================");
+                    }else{
+                        mPreview.takeScreenshot();
+                    }
 
-                    mPreview.takeScreenshot();
                 }
             });
         }

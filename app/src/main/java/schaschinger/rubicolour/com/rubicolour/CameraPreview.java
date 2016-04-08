@@ -30,10 +30,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private SurfaceHolder mHolder;
     private Camera mCamera;
 
+    //counter counts from 1 to including 6 - 1 first side - 6 last face of the cube
+    private int counter = 1;
 
     private final String TAG = "CameraPreview - ";
-
-
 
 
     public CameraPreview(Context context, Camera camera) {
@@ -126,57 +126,67 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         ColorUtils colorUtils = new ColorUtils();
         String colorName = colorUtils.getColorNameFromHex(pixelCenter);
         Log.i(TAG, "Center : " + colorName);
+        addToMap(counter, colorName);
 
         //Color left
         hexColor = String.format("#%06X", (0xFFFFFF & pixelLeft));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelLeft);
         Log.i(TAG, "Left : " + colorName);
+        addToMap(counter, colorName);
 
         //Color right
         hexColor = String.format("#%06X", (0xFFFFFF & pixelRight));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelRight);
         Log.i(TAG, "Right : " + colorName);
+        addToMap(counter, colorName);
 
         //Top center
         hexColor = String.format("#%06X", (0xFFFFFF & pixelTopCenter));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelTopCenter);
         Log.i(TAG, "Top center : " + colorName);
+        addToMap(counter, colorName);
 
         //Top left
         hexColor = String.format("#%06X", (0xFFFFFF & pixelTopLeft));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelTopLeft);
         Log.i(TAG, "Top left : " + colorName);
+        addToMap(counter, colorName);
 
         //Top right
         hexColor = String.format("#%06X", (0xFFFFFF & pixelTopRight));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelTopRight);
         Log.i(TAG, "Top right : " + colorName);
+        addToMap(counter, colorName);
 
         //Bttom center
         hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomCenter));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelBottomCenter);
         Log.i(TAG, "Bottom center : " + colorName);
+        addToMap(counter, colorName);
 
         //Bottom left
         hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomLeft));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelBottomLeft);
         Log.i(TAG, "Bottom left : " + colorName);
+        addToMap(counter, colorName);
 
         //Bottom right
         hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomRight));
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelBottomRight);
         Log.i(TAG, "Bottom right : " + colorName);
+        addToMap(counter, colorName);
 
-
+        counter++;
         Log.i(TAG, "================================================================================");
+
 
         mCamera.stopPreview();
         //Restart camera to take another picture
@@ -191,75 +201,40 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     /*
     HashMaps for cube-surfaces - Key=String, Value=String(Color)
      Keys = [TopL, TopC, TopR, CenL, CenC, CenR, BotL, BotC, BotR}
+        +
+     ++++
+        +
      */
-    private HashMap <String, String> hashWhite;
-    private HashMap <String, String> hashOrange;
-    private HashMap <String, String> hashYellow;
-    private HashMap <String, String> hashRed;
-    private HashMap <String, String> hashGreen;
-    private HashMap <String, String> hashBlue;
 
-    public ArrayList <HashMap<String, String>> allMaps;
+    private ArrayList<String> listWhite;
+    private ArrayList<String> listOrange;
+    private ArrayList<String> listYellow;
+    private ArrayList<String> listRed;
+    private ArrayList<String> listGreen;
+    private ArrayList<String> listBlue;
 
-    private final String[] keyMap = new String[]{"TopL","TopC","TopR","CenL","CenC","CenR","BotL","BotC","BotR"};
+    public void initializeArraylists(){
+        this.listWhite = new ArrayList<>();
+        this.listOrange = new ArrayList<>();
+        this.listYellow = new ArrayList<>();
+        this.listRed = new ArrayList<>();
+        this.listGreen = new ArrayList<>();
+        this.listBlue = new ArrayList<>();
+    }
 
-    private void initializeMap(String mapName, String [] vales){
-        switch (mapName){
-            case "hashWhite":
-                this.hashWhite = new HashMap<String, String>();
-                for(int i = 0; i < vales.length; i++){
-                    hashWhite.put(keyMap[i], vales[i]);
-                }
-
-                break;
-            case "hashOrange":
-                this.hashOrange = new HashMap<String, String>();
-                for(int i = 0; i < vales.length; i++){
-                    hashOrange.put(keyMap[i], vales[i]);
-                }
-
-                break;
-            case "hashYellow":
-                this.hashYellow = new HashMap<String, String>();
-                for(int i = 0; i < vales.length; i++){
-                    hashYellow.put(keyMap[i], vales[i]);
-                }
-
-                break;
-            case "hashRed":
-                this.hashRed = new HashMap<String, String>();
-                for(int i = 0; i < vales.length; i++){
-                    hashRed.put(keyMap[i], vales[i]);
-                }
-
-                break;
-            case "hashGreen":
-                this.hashGreen = new HashMap<String, String>();
-                for(int i = 0; i < vales.length; i++){
-                    hashGreen.put(keyMap[i], vales[i]);
-                }
-
-                break;
-            case "hashBlue":
-                this.hashBlue = new HashMap<String, String>();
-                for(int i = 0; i < vales.length; i++){
-                    hashBlue.put(keyMap[i], vales[i]);
-                }
-
-                break;
-            default:
-                Log.i(TAG, "Unknown hashMap! " + mapName);
-                break;
-        }
-
-        if(hashWhite != null && hashOrange != null && hashYellow != null && hashRed != null && hashGreen != null && hashBlue != null){
-            allMaps.add(this.hashWhite);
-            allMaps.add(this.hashOrange);
-            allMaps.add(this.hashYellow);
-            allMaps.add(this.hashRed);
-            allMaps.add(this.hashGreen);
-            allMaps.add(this.hashBlue);
-            Log.i(TAG, "All maps gathered!");
+    private void addToMap(int mapid, String color){
+        if(mapid == 1){
+            this.listWhite.add(color);
+        }else if(mapid == 2){
+            this.listOrange.add(color);
+        }else if(mapid == 3){
+            this.listYellow.add(color);
+        }else if(mapid == 4){
+            this.listRed.add(color);
+        }else if(mapid == 5){
+            this.listGreen.add(color);
+        }else if(mapid == 6){
+            this.listBlue.add(color);
         }
     }
 
@@ -310,5 +285,39 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
+    //Reset counter to add to maps back to 1
+    //1 = first face of the cube
+    public void resetCounter(){
+        this.counter = 1;
+    }
 
+    public int getCounter(){
+        return this.counter;
+    }
+
+    //Getters for maps
+
+    public ArrayList<String> getListBlue() {
+        return listBlue;
+    }
+
+    public ArrayList<String> getListGreen() {
+        return listGreen;
+    }
+
+    public ArrayList<String> getListRed() {
+        return listRed;
+    }
+
+    public ArrayList<String> getListYellow() {
+        return listYellow;
+    }
+
+    public ArrayList<String> getListOrange() {
+        return listOrange;
+    }
+
+    public ArrayList<String> getListWhite() {
+        return listWhite;
+    }
 }
