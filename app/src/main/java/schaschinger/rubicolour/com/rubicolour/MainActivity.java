@@ -50,6 +50,12 @@ public class MainActivity extends Activity {
     private Button btnPrune;
 
 
+    private ArrayList<String> lWhite;
+    private ArrayList<String> lOrange;
+    private ArrayList<String> lYellow;
+    private ArrayList<String> lRed;
+    private ArrayList<String> lGreen;
+    private ArrayList<String> lBlue;
 
 
 
@@ -82,13 +88,27 @@ public class MainActivity extends Activity {
                 public void onClick(View v) {
                     if(mPreview.getCounter() == 7){
                         Log.i(TAG, "=================================================================================");
-                        Log.i(TAG, "WhiteList entries: " + mPreview.getListWhite().size());
-                        Log.i(TAG, "OrangeList entries: " + mPreview.getListOrange().size());
-                        Log.i(TAG, "YellowList entries: " + mPreview.getListYellow().size());
-                        Log.i(TAG, "RedList entries: " + mPreview.getListRed().size());
-                        Log.i(TAG, "GreenList entries: " + mPreview.getListGreen().size());
-                        Log.i(TAG, "BlueList entries: " + mPreview.getListBlue().size());
+
+                        lWhite = mPreview.getListWhite();
+                        lOrange = mPreview.getListOrange();
+                        lYellow = mPreview.getListYellow();
+                        lRed = mPreview.getListRed();
+                        lGreen = mPreview.getListGreen();
+                        lBlue = mPreview.getListBlue();
+
+                        Log.i(TAG, "Data of WhiteList: " + lWhite.get(0) + " , " + lWhite.get(1) + " , " + lWhite.get(2) + " , " + lWhite.get(3) + " , " + lWhite.get(4) + " , " + lWhite.get(5) + " , " + lWhite.get(6) + " , " + lWhite.get(7) + " , " + lWhite.get(8));
+                        Log.i(TAG, "Data of OrangeList: " + lOrange.get(0) + " , " + lOrange.get(1) + " , " + lOrange.get(2) + " , " + lOrange.get(3) + " , " + lOrange.get(4) + " , " + lOrange.get(5) + " , " + lOrange.get(6) + " , " + lOrange.get(7) + " , " + lOrange.get(8));
+                        Log.i(TAG, "Data of YellowList: " + lYellow.get(0) + " , " + lYellow.get(1) + " , " + lYellow.get(2) + " , " + lYellow.get(3) + " , " + lYellow.get(4) + " , " + lYellow.get(5) + " , " + lYellow.get(6) + " , " + lYellow.get(7) + " , " + lYellow.get(8));
+                        Log.i(TAG, "Data of RedList: " + lRed.get(0) + " , " + lRed.get(1) + " , " + lRed.get(2) + " , " + lRed.get(3) + " , " + lRed.get(4) + " , " + lRed.get(5) + " , " + lRed.get(6) + " , " + lRed.get(7) + " , " + lRed.get(8));
+                        Log.i(TAG, "Data of GreenList: " + lGreen.get(0) + " , " + lGreen.get(1) + " , " + lGreen.get(2) + " , " + lGreen.get(3) + " , " + lGreen.get(4) + " , " + lGreen.get(5) + " , " + lGreen.get(6) + " , " + lGreen.get(7) + " , " + lGreen.get(8));
+                        Log.i(TAG, "Data of BlueList: " + lBlue.get(0) + " , " + lBlue.get(1) + " , " + lBlue.get(2) + " , " + lBlue.get(3) + " , " + lBlue.get(4) + " , " + lBlue.get(5) + " , " + lBlue.get(6) + " , " + lBlue.get(7) + " , " + lBlue.get(8));
+
                         Log.i(TAG, "=================================================================================");
+
+                        //Start cube preview
+                        Intent i = new Intent(getBaseContext(), GLCubeExample.class);
+                        startActivity(i);
+
                     }else{
                         mPreview.takeScreenshot();
                     }
