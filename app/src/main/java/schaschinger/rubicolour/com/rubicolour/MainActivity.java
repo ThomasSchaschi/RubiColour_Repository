@@ -105,9 +105,13 @@ public class MainActivity extends Activity {
 
                         Log.i(TAG, "=================================================================================");
 
-                        //Start cube preview
-                        Intent i = new Intent(getBaseContext(), GLCubeExample.class);
-                        startActivity(i);
+                        //Get Permission to calculate the singmaster notation
+                        if(haveGo()) {
+                            String masterString = Singmaster.createSingmasterNotation(lWhite, lOrange, lYellow, lRed, lGreen, lBlue);
+                            Log.i(TAG, masterString);
+                        }else{
+                            Log.i(TAG, "Requirements not fulfilled!");
+                        }
 
                     }else{
                         mPreview.takeScreenshot();
@@ -162,4 +166,45 @@ public class MainActivity extends Activity {
             mCamera = null;
         }
     }
+
+    /**
+     * This method calculates if all 6 color occure 9 times - not more and not less;
+     * Otherwise it doesn't match the rubiks cube criteria;
+     * @return
+     */
+    private int counterW = 0, counterR = 0, counterB = 0, counterO = 0, counterG = 0, counterY = 0;
+    private boolean haveGo(){
+        for(int i = 0; i < 9; i++){
+            addToCounter(lWhite.get(i));
+            addToCounter(lRed.get(i));
+            addToCounter(lBlue.get(i));
+            addToCounter(lOrange.get(i));
+            addToCounter(lGreen.get(i));
+            addToCounter(lYellow.get(i));
+        }
+
+        if(counterW != 9 || counterR != 9 || counterB != 9 || counterO != 9 || counterG != 9 || counterY != 9){
+            Log.e(TAG, "Counters don't check out!");
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private void addToCounter(String color){
+        if(color.equalsIgnoreCase("white")){
+            this.counterW++;
+        }else if(color.equalsIgnoreCase("red")){
+            this.counterR++;
+        }else if(color.equalsIgnoreCase("blue")){
+            this.counterB++;
+        }else if(color.equalsIgnoreCase("orange")){
+            this.counterO++;
+        }else if(color.equalsIgnoreCase("green")){
+            this.counterG++;
+        }else if(color.equalsIgnoreCase("yellow")){
+            this.counterY++;
+        }
+    }
+
 }

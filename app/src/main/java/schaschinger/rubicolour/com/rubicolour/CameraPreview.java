@@ -119,27 +119,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             e.printStackTrace();
         }
         */
-
-        //Color center
-        String hexColor = String.format("#%06X", (0xFFFFFF & pixelCenter));
-        Log.i(TAG, "Probably : " + hexColor);
         ColorUtils colorUtils = new ColorUtils();
-        String colorName = colorUtils.getColorNameFromHex(pixelCenter);
-        Log.i(TAG, "Center : " + colorName);
-        addToMap(counter, colorName);
 
-        //Color left
-        hexColor = String.format("#%06X", (0xFFFFFF & pixelLeft));
+        //Top left
+        String hexColor = String.format("#%06X", (0xFFFFFF & pixelTopLeft));
         Log.i(TAG, "Probably : " + hexColor);
-        colorName = colorUtils.getColorNameFromHex(pixelLeft);
-        Log.i(TAG, "Left : " + colorName);
-        addToMap(counter, colorName);
-
-        //Color right
-        hexColor = String.format("#%06X", (0xFFFFFF & pixelRight));
-        Log.i(TAG, "Probably : " + hexColor);
-        colorName = colorUtils.getColorNameFromHex(pixelRight);
-        Log.i(TAG, "Right : " + colorName);
+        String colorName = colorUtils.getColorNameFromHex(pixelTopLeft);
+        Log.i(TAG, "Top left : " + colorName);
         addToMap(counter, colorName);
 
         //Top center
@@ -149,13 +135,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         Log.i(TAG, "Top center : " + colorName);
         addToMap(counter, colorName);
 
-        //Top left
-        hexColor = String.format("#%06X", (0xFFFFFF & pixelTopLeft));
-        Log.i(TAG, "Probably : " + hexColor);
-        colorName = colorUtils.getColorNameFromHex(pixelTopLeft);
-        Log.i(TAG, "Top left : " + colorName);
-        addToMap(counter, colorName);
-
         //Top right
         hexColor = String.format("#%06X", (0xFFFFFF & pixelTopRight));
         Log.i(TAG, "Probably : " + hexColor);
@@ -163,11 +142,25 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         Log.i(TAG, "Top right : " + colorName);
         addToMap(counter, colorName);
 
-        //Bttom center
-        hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomCenter));
+        //Color left
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelLeft));
         Log.i(TAG, "Probably : " + hexColor);
-        colorName = colorUtils.getColorNameFromHex(pixelBottomCenter);
-        Log.i(TAG, "Bottom center : " + colorName);
+        colorName = colorUtils.getColorNameFromHex(pixelLeft);
+        Log.i(TAG, "Left : " + colorName);
+        addToMap(counter, colorName);
+
+        //Color center
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelCenter));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelCenter);
+        Log.i(TAG, "Center : " + colorName);
+        addToMap(counter, colorName);
+
+        //Color right
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelRight));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelRight);
+        Log.i(TAG, "Right : " + colorName);
         addToMap(counter, colorName);
 
         //Bottom left
@@ -175,6 +168,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         Log.i(TAG, "Probably : " + hexColor);
         colorName = colorUtils.getColorNameFromHex(pixelBottomLeft);
         Log.i(TAG, "Bottom left : " + colorName);
+        addToMap(counter, colorName);
+
+        //Bottom center
+        hexColor = String.format("#%06X", (0xFFFFFF & pixelBottomCenter));
+        Log.i(TAG, "Probably : " + hexColor);
+        colorName = colorUtils.getColorNameFromHex(pixelBottomCenter);
+        Log.i(TAG, "Bottom center : " + colorName);
         addToMap(counter, colorName);
 
         //Bottom right
@@ -226,15 +226,15 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         if(mapid == 1){
             this.listWhite.add(color);
         }else if(mapid == 2){
-            this.listOrange.add(color);
+            this.listRed.add(color);
         }else if(mapid == 3){
             this.listYellow.add(color);
         }else if(mapid == 4){
-            this.listRed.add(color);
-        }else if(mapid == 5){
-            this.listGreen.add(color);
-        }else if(mapid == 6){
             this.listBlue.add(color);
+        }else if(mapid == 5){
+            this.listOrange.add(color);
+        }else if(mapid == 6){
+            this.listGreen.add(color);
         }
     }
 
