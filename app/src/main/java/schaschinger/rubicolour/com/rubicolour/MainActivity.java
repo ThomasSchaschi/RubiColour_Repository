@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.Policy;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,7 +69,6 @@ public class MainActivity extends Activity {
         // Create an instance of Camera
         mCamera = getCameraInstance();
 
-
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(this, mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
@@ -97,11 +97,11 @@ public class MainActivity extends Activity {
                         lBlue = mPreview.getListBlue();
 
                         Log.i(TAG, "Data of WhiteList: " + lWhite.get(0) + " , " + lWhite.get(1) + " , " + lWhite.get(2) + " , " + lWhite.get(3) + " , " + lWhite.get(4) + " , " + lWhite.get(5) + " , " + lWhite.get(6) + " , " + lWhite.get(7) + " , " + lWhite.get(8));
-                        Log.i(TAG, "Data of OrangeList: " + lOrange.get(0) + " , " + lOrange.get(1) + " , " + lOrange.get(2) + " , " + lOrange.get(3) + " , " + lOrange.get(4) + " , " + lOrange.get(5) + " , " + lOrange.get(6) + " , " + lOrange.get(7) + " , " + lOrange.get(8));
-                        Log.i(TAG, "Data of YellowList: " + lYellow.get(0) + " , " + lYellow.get(1) + " , " + lYellow.get(2) + " , " + lYellow.get(3) + " , " + lYellow.get(4) + " , " + lYellow.get(5) + " , " + lYellow.get(6) + " , " + lYellow.get(7) + " , " + lYellow.get(8));
                         Log.i(TAG, "Data of RedList: " + lRed.get(0) + " , " + lRed.get(1) + " , " + lRed.get(2) + " , " + lRed.get(3) + " , " + lRed.get(4) + " , " + lRed.get(5) + " , " + lRed.get(6) + " , " + lRed.get(7) + " , " + lRed.get(8));
-                        Log.i(TAG, "Data of GreenList: " + lGreen.get(0) + " , " + lGreen.get(1) + " , " + lGreen.get(2) + " , " + lGreen.get(3) + " , " + lGreen.get(4) + " , " + lGreen.get(5) + " , " + lGreen.get(6) + " , " + lGreen.get(7) + " , " + lGreen.get(8));
+                        Log.i(TAG, "Data of YellowList: " + lYellow.get(0) + " , " + lYellow.get(1) + " , " + lYellow.get(2) + " , " + lYellow.get(3) + " , " + lYellow.get(4) + " , " + lYellow.get(5) + " , " + lYellow.get(6) + " , " + lYellow.get(7) + " , " + lYellow.get(8));
                         Log.i(TAG, "Data of BlueList: " + lBlue.get(0) + " , " + lBlue.get(1) + " , " + lBlue.get(2) + " , " + lBlue.get(3) + " , " + lBlue.get(4) + " , " + lBlue.get(5) + " , " + lBlue.get(6) + " , " + lBlue.get(7) + " , " + lBlue.get(8));
+                        Log.i(TAG, "Data of OrangeList: " + lOrange.get(0) + " , " + lOrange.get(1) + " , " + lOrange.get(2) + " , " + lOrange.get(3) + " , " + lOrange.get(4) + " , " + lOrange.get(5) + " , " + lOrange.get(6) + " , " + lOrange.get(7) + " , " + lOrange.get(8));
+                        Log.i(TAG, "Data of GreenList: " + lGreen.get(0) + " , " + lGreen.get(1) + " , " + lGreen.get(2) + " , " + lGreen.get(3) + " , " + lGreen.get(4) + " , " + lGreen.get(5) + " , " + lGreen.get(6) + " , " + lGreen.get(7) + " , " + lGreen.get(8));
 
                         Log.i(TAG, "=================================================================================");
 
@@ -115,6 +115,9 @@ public class MainActivity extends Activity {
 
                     }else{
                         mPreview.takeScreenshot();
+
+                        startRajawali();
+
                     }
 
                 }
@@ -126,7 +129,10 @@ public class MainActivity extends Activity {
     private static final int CAMERA_REQUEST = 1888; // field
 
 
-
+    private void startRajawali(){
+        Intent intent = new Intent(this, RajawaliMainActivity.class);
+        startActivity(intent);
+    }
 
     /** Check if this device has a camera */
     private boolean checkCameraHardware(Context context) {
@@ -144,6 +150,7 @@ public class MainActivity extends Activity {
         Camera c = null;
         try {
             c = Camera.open(); // attempt to get a Camera instance
+
             Log.i(TAG, "Primary Camera CAN be accessed!");
         }
         catch (Exception e){
