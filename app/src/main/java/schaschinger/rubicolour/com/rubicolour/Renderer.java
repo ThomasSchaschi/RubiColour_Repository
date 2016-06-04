@@ -43,7 +43,7 @@ public class Renderer extends RajawaliRenderer{
         material.setColor(0);
 
         /////////////////////////////////https://github.com/Rajawali/Rajawali/wiki/tutorial-17-importing-.obj-files
-        LoaderOBJ parser = new LoaderOBJ(getContext().getResources(), mTextureManager, R.raw.rubikscube);
+        LoaderOBJ parser = new LoaderOBJ(getContext().getResources(), mTextureManager, R.raw.rubikscubeo);
         try{
             parser.parse();
         }catch(ParsingException e){

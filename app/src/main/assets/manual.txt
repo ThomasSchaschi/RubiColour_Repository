@@ -1,0 +1,53 @@
+Welcome to RubiColour!
+
+We would like to give you a brief introduction
+of how to work with this application.
+
+Before getting started, it is important to
+mention that this app currently only works
+for the 'One-Plus One' however, there will
+follow an update shortly. Furthermore it is
+important to notice that color identification
+currently does not work for every cube, only
+for the standard rubiks cube.
+
+1. By clicking 'Proceed' a rotating-3-dimensional
+rubiks cube will appear on the screen. This
+is the default waiting state of the app.
+
+2. Now by clicking anywhere on the screen, a
+custom camera with a 3x3 grid will appear.
+Focus the camera on the cube from above and
+take a photograph. !!! Please note the order
+in which the cube has to be photographed:
+First the above (white) face, then the red
+(front) face, -> bottom (yellow) face ->
+rotate back to front face and turn
+clockwise, (blue) face -> clockwise back
+(orange) face -> clockwise left (green) face.
+
+3. After having captured all 6 faces, press the
+'prune' button once again and the Singmaster
+string should appear. If color-checking
+algorithm has detected an error, it will
+tell you so.
+
+4. By clicking 'Nope' you will be returned
+to the default-waiting screen.
+
+4.1 By clicking 'Sure' you will be returned
+to the 3x3 matrix, so that another cube can
+be pruned.
+
+Shortly following improvements:
+- Only 5 faces will have to be photographed
+- Color adjustments can be made
+- Compatible with other droids
+
+About:
+This application was made by Thomas Schaschinger
+(thomas.schaschinger@gmail.com) for a school
+project - Running a rubiks cube solver on
+my computer where Singmaster notation is needed
+as default input -> 6 stepper motors rotate
+cube in under 2 seconds back to original state.

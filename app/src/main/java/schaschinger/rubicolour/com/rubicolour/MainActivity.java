@@ -1,5 +1,7 @@
 package schaschinger.rubicolour.com.rubicolour;
 
+import android.*;
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -15,6 +17,8 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.SyncStateContract;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +54,6 @@ public class MainActivity extends Activity {
     private CameraPreview mPreview;
     private Button btnPrune;
 
-
     private ArrayList<String> lWhite;
     private ArrayList<String> lOrange;
     private ArrayList<String> lYellow;
@@ -58,13 +61,12 @@ public class MainActivity extends Activity {
     private ArrayList<String> lGreen;
     private ArrayList<String> lBlue;
 
-
+    private String masterString = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preview);
-
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
@@ -107,32 +109,32 @@ public class MainActivity extends Activity {
 
                         //Get Permission to calculate the singmaster notation
                         if(haveGo()) {
-                            String masterString = Singmaster.createSingmasterNotation(lWhite, lOrange, lYellow, lRed, lGreen, lBlue);
+                            masterString = Singmaster.createSingmasterNotation(lWhite, lOrange, lYellow, lRed, lGreen, lBlue);
                             Log.i(TAG, masterString);
+                            startResultSet(masterString);
                         }else{
                             Log.i(TAG, "Requirements not fulfilled!");
+                            mPreview.setCounter(mPreview.getCounter() + 1);
+                            startResultSet(masterString);
                         }
 
                     }else{
                         mPreview.takeScreenshot();
-
-                        startRajawali();
-
                     }
-
                 }
             });
         }
+    }
 
+
+    private void startResultSet(String singmasterString){
+        Intent startResultSetIntent = new Intent(this, ResultSet.class);
+        startResultSetIntent.putExtra("SingmasterExtra", singmasterString);
+        startActivity(startResultSetIntent);
+        finish();
     }
 
     private static final int CAMERA_REQUEST = 1888; // field
-
-
-    private void startRajawali(){
-        Intent intent = new Intent(this, RajawaliMainActivity.class);
-        startActivity(intent);
-    }
 
     /** Check if this device has a camera */
     private boolean checkCameraHardware(Context context) {
@@ -147,9 +149,10 @@ public class MainActivity extends Activity {
 
     /** A safe way to get an instance of the Camera object. */
     public static Camera getCameraInstance(){
-        Camera c = null;
+        android.hardware.Camera c = null;
         try {
-            c = Camera.open(); // attempt to get a Camera instance
+            int cid = findFrontFacingCamera();
+            c = android.hardware.Camera.open(); // attempt to get a Camera instance
 
             Log.i(TAG, "Primary Camera CAN be accessed!");
         }
@@ -159,6 +162,25 @@ public class MainActivity extends Activity {
         }
         return c; // returns null if camera is unavailable
     }
+
+    public static int findFrontFacingCamera() {
+        int cameraId = -1;
+        boolean cameraFront;
+        // Search for the front facing camera
+        int numberOfCameras = Camera.getNumberOfCameras();
+        for (int i = 0; i < numberOfCameras; i++) {
+            Camera.CameraInfo info = new Camera.CameraInfo();
+            Camera.getCameraInfo(i, info);
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                cameraId = i;
+                cameraFront = true;
+                break;
+            }
+        }
+        return cameraId;
+    }
+
+
 
     @Override
     protected void onPause() {

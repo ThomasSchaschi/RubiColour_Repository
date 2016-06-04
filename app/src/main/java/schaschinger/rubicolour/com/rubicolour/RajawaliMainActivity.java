@@ -2,8 +2,14 @@ package schaschinger.rubicolour.com.rubicolour;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 import org.rajawali3d.surface.IRajawaliSurface;
@@ -16,6 +22,7 @@ import org.rajawali3d.surface.RajawaliSurfaceView;
  */
 public class RajawaliMainActivity extends Activity{
     private Renderer renderer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,16 @@ public class RajawaliMainActivity extends Activity{
 
         renderer = new Renderer(this);
         surface.setSurfaceRenderer(renderer);
+
+
+        ((View)findViewById(R.id.actmain)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startMain = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(startMain);
+            }
+        });
+
 
     }
 }

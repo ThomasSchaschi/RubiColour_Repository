@@ -295,6 +295,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         return this.counter;
     }
 
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
     //Getters for maps
 
     public ArrayList<String> getListBlue() {

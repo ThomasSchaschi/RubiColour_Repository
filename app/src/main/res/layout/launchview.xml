@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:padding="8dp"
+    android:background="#c5cae9"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="How it works:"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.10"
+        android:gravity="center_horizontal|center_vertical"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/scrollView"
+        android:layout_weight="0.85"
+        android:background="#e8eaf6"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="-Manual-"
+            android:id="@+id/tvManual"
+            android:padding="7dp"
+            android:textColor="#000000"
+            />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:weightSum="1"
+        android:gravity="center_vertical|center_horizontal"
+        >
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:weightSum="1">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show on StartUp!"
+                android:id="@+id/rbShow"
+                android:layout_weight="0.50"
+                />
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proceed!"
+            android:id="@+id/btnStart"
+            android:layout_weight="0.50"
+            android:background="#3f51b5"
+            android:textColor="#ffffff"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
