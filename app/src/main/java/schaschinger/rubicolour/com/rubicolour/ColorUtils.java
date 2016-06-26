@@ -162,12 +162,12 @@ public class ColorUtils {
         */
 
 
-        colorList.add(new ColorName("White", 0xD3, 0xC5, 0xC4));
-        colorList.add(new ColorName("Red", 0x7F, 0x0B, 0x0B));
-        colorList.add(new ColorName("Yellow", 0xC5, 0xCC, 0x58));
-        colorList.add(new ColorName("Blue", 0x00, 0x31, 0x71));
-        colorList.add(new ColorName("Orange", 0xDC, 0x5B, 0x3B));
-        colorList.add(new ColorName("Green", 0x00, 0x92, 0x30));
+        colorList.add(new ColorName("White", 0xCC, 0xDF, 0xE5));
+        colorList.add(new ColorName("Red", 0x7E, 0x1F, 0x19));
+        colorList.add(new ColorName("Yellow", 0xC0, 0xF6, 0x6D));
+        colorList.add(new ColorName("Blue", 0x02, 0x5A, 0xA4));
+        colorList.add(new ColorName("Orange", 0xEB, 0x92, 0x68));
+        colorList.add(new ColorName("Green", 0x00, 0xB8, 0x48));
 
 
 
