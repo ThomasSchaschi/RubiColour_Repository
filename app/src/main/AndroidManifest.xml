@@ -57,7 +57,7 @@
         </activity>
 
         <activity android:name=".ResultSet"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

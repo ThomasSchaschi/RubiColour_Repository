@@ -77,6 +77,7 @@ public class Launcher extends Activity {
                 }
             }
         });
+        permissionsQ();
 
 
     }

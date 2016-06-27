@@ -14,8 +14,8 @@ public class ColorUtils {
     /**
      * Initialize the color list that we have.
      */
-    private ArrayList<ColorName> initColorList() {
-        ArrayList<ColorName> colorList = new ArrayList<ColorName>();
+
+     public static ArrayList<ColorName> colorListStatic = new ArrayList<ColorName>();
 
         /*
         colorList.add(new ColorName("White", 0xF0, 0xF8, 0xFF));
@@ -162,17 +162,18 @@ public class ColorUtils {
         */
 
 
-        colorList.add(new ColorName("White", 0xCC, 0xDF, 0xE5));
-        colorList.add(new ColorName("Red", 0x7E, 0x1F, 0x19));
-        colorList.add(new ColorName("Yellow", 0xC0, 0xF6, 0x6D));
-        colorList.add(new ColorName("Blue", 0x02, 0x5A, 0xA4));
-        colorList.add(new ColorName("Orange", 0xEB, 0x92, 0x68));
-        colorList.add(new ColorName("Green", 0x00, 0xB8, 0x48));
 
 
 
-        return colorList;
+    public void initColorList(){
+        colorListStatic.add(new ColorName("White", 0xCC, 0xDF, 0xE5));
+        colorListStatic.add(new ColorName("Red", 0x7E, 0x1F, 0x19));
+        colorListStatic.add(new ColorName("Yellow", 0xC0, 0xF6, 0x6D));
+        colorListStatic.add(new ColorName("Blue", 0x02, 0x5A, 0xA4));
+        colorListStatic.add(new ColorName("Orange", 0xEB, 0x92, 0x68));
+        colorListStatic.add(new ColorName("Green", 0x00, 0xB8, 0x48));
     }
+
 
     /**
      * Get the closest color name from our list
@@ -183,7 +184,8 @@ public class ColorUtils {
      * @return
      */
     public String getColorNameFromRgb(int r, int g, int b) {
-        ArrayList<ColorName> colorList = initColorList();
+        initColorList();
+        ArrayList<ColorName> colorList = colorListStatic;
         ColorName closestMatch = null;
         int minMSE = Integer.MAX_VALUE;
         int mse;

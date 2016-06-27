@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
     private Camera mCamera;
     private CameraPreview mPreview;
     private Button btnPrune;
+    private static final int REQUEST_CAMERA = 1;
 
     private ArrayList<String> lWhite;
     private ArrayList<String> lOrange;
@@ -148,7 +149,8 @@ public class MainActivity extends Activity {
     }
 
     /** A safe way to get an instance of the Camera object. */
-    public static Camera getCameraInstance(){
+    public Camera getCameraInstance(){
+
         android.hardware.Camera c = null;
         try {
             int cid = findFrontFacingCamera();
@@ -161,6 +163,33 @@ public class MainActivity extends Activity {
             Log.e(TAG, "Primary Camera CANNOT be accessed!");
         }
         return c; // returns null if camera is unavailable
+    }
+
+    public void permissionsQ(){
+        //Receive Runtime Permission
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+            Log.i(TAG, "Should have permission to access camera!");
+        }else{
+            Log.i(TAG, "Don't have permission to access camera!");
+
+            //Putting up dialog for users to inform about camera denial
+            if(shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)){
+                Toast.makeText(this, "You need to give us permission to use your camera! - we cannot operate without.", Toast.LENGTH_SHORT).show();
+            }
+            requestPermissions(new String[]{android.Manifest.permission.CAMERA}, REQUEST_CAMERA);
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if(requestCode == REQUEST_CAMERA){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Log.i(TAG, "Should have permission by now.");
+            }
+        }else{
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     public static int findFrontFacingCamera() {

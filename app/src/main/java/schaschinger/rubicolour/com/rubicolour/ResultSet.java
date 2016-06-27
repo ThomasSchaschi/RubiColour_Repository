@@ -17,7 +17,7 @@ public class ResultSet extends Activity {
 
     private static final String TAG = "ResultSet - ";
 
-    private Button btnSure, btnNope;
+    private Button btnSure, btnNope, btnCalibration;
     private TextView masterView;
 
     @Override
@@ -35,6 +35,7 @@ public class ResultSet extends Activity {
     private void initialize() {
         this.btnNope = (Button) findViewById(R.id.btnNope);
         this.btnSure = (Button) findViewById(R.id.btnSure);
+        this.btnCalibration = (Button)findViewById(R.id.btnCalibration);
         this.masterView = (TextView) findViewById(R.id.tvSingmaster);
 
         if (this.masterString != null && !this.masterString.equals("")) {
@@ -54,6 +55,13 @@ public class ResultSet extends Activity {
             @Override
             public void onClick(View v) {
                 startMainActivity();
+            }
+        });
+
+        this.btnCalibration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

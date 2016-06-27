@@ -41,7 +41,7 @@
         android:layout_weight="0.25" />
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -52,26 +52,38 @@
         >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Nope!"
             android:id="@+id/btnNope"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textColor="#ffffff"
-            android:layout_weight="0.50"
+
             android:background="#5677fc"
-            android:layout_margin="5dp"/>
+           />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Sure!"
             android:id="@+id/btnSure"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:textColor="#ffffff"
-            android:layout_weight="0.50"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="#5677fc"
-            android:layout_margin="5dp"/>
+          />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calib. Colours!"
+            android:id="@+id/btnCalibration"
+            android:textSize="17dp"
+            android:textColor="#ffffff"
+
+            android:background="#5677fc"
+            />
     </LinearLayout>
 
 </LinearLayout>
